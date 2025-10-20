@@ -31,12 +31,72 @@
     body.mobile { background: #0000; }
     body.mobile .container { max-width: none; width: 100vw; }
     body.mobile .app-header { display: none; }
+
+    /* تنظیمات آیکن‌ها و دکمه‌ها در موبایل */
     body.mobile iframe {
       position: fixed; /* فاصله‌ها را صفر می‌کند */
       inset: 0;        /* top/right/bottom/left = 0  */
       width: 100vw;
       height: 100dvh;  /* آدرس‌بار موبایل را هم لحاظ می‌کند */
       border: none;
+    }
+
+    /* کوچکتر کردن لوگو در موبایل */
+    body.mobile .logo-class-name {
+      width: 50px !important;     /* عرض جدید برای لوگو */
+      height: 50px !important;    /* ارتفاع جدید برای لوگو */
+    }
+
+    /* تنظیم اندازه آیکن‌ها و دکمه‌ها */
+    @media (max-width: 768px) {
+      .rcx-message-box__toolbar button,
+      .rcx-option_content {
+        font-size: 16px !important;  /* اندازهٔ فونت ثابت */
+        height: 30px;               /* ارتفاع دکمه‌ها کوچکتر می‌شود */
+        width: 30px;                /* عرض دکمه‌ها کوچکتر می‌شود */
+      }
+
+      /* کاهش اندازه لوگو بیمار */
+      .logo-class-name {
+        width: 50px !important;     /* عرض جدید برای لوگو */
+        height: 50px !important;    /* ارتفاع جدید برای لوگو */
+      }
+
+      /* فاصله‌ها و حاشیه‌ها */
+      .rcx-message-box__toolbar {
+        margin-bottom: 10px;         /* کاهش فاصله پایین نوار ابزار */
+        padding: 0 10px;             /* کاهش فضای اضافی */
+      }
+
+      /* فاصله‌ها بین پیام‌ها در موبایل */
+      .rcx-message-list {
+        padding: 0 10px;             /* فاصله داخلی بین پیام‌ها */
+        margin-bottom: 10px;         /* فاصله پایین پیام‌ها */
+      }
+
+      /* کاهش اندازه المان‌های داخل پیام */
+      .rcx-message-list .rcx-message {
+        font-size: 16px !important;  /* اندازهٔ فونت ثابت برای پیام‌ها */
+        padding: 5px 10px;           /* فاصله داخل پیام‌ها */
+      }
+
+      /* برای دکمه‌های ارسال فایل و دوربین */
+      .rcx-message-box__toolbar button {
+        font-size: 18px !important;  /* اندازهٔ متن برای دکمه‌ها */
+        padding: 5px 8px;            /* فضای داخلی دکمه‌ها */
+      }
+
+      /* اطمینان از این که متن در موبایل به‌درستی نمایش داده شود */
+      .rcx-message-box__input {
+        font-size: 16px;             /* حفظ اندازهٔ متن */
+        padding: 8px;                /* فضای داخلی ورودی */
+      }
+
+      /* تنظیم برای آیکن‌ها و دکمه‌ها در نوار پیام */
+      .rcx-option_content {
+        font-size: 14px !important;  /* کاهش اندازه آیکن‌ها */
+        padding: 5px !important;
+      }
     }
   </style>
 
@@ -84,11 +144,10 @@
 
     <!-- اجازهٔ دوربین و میکروفون -->
     <iframe
-      src="https://paziresh24-chat-bj21wmqlww.liara.run/group/PAZIRESH24-2?layout=embedded"
+      src="https://paziresh24-chat-bj21wmqlww.liara.run/group/Test-Chat-1?layout=embedded"
       title="Rocket Chat"
       allow="camera; microphone">
     </iframe>
   </div>
 </body>
 </html>
-
