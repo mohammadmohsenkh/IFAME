@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <!-- مقدارش را با JS پایین به‌روز می‌کنیم -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>چت راکت</title>
+
+  <style>
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: #f7f7f7; }
+
+    /* حالت دسکتاپ (قفل به عرض ثابت) */
+    :root { --headerH: 56px; }
+    .container { width: 100%; max-width: 1280px; margin: 0 auto; }
+    .app-header {
+      height: var(--headerH);
+      line-height: var(--headerH);
+      margin: 0; padding: 0 16px; font-size: 18px;
+      background: #fff; border-bottom: 1px solid #eaeaea;
+    }
+    iframe {
+      display: block;
+      width: 100%;
+      height: calc(100dvh - var(--headerH));
+      border: none; background: #fff;
+    }
+
+    /* حالت موبایل (ریسپانسیو واقعی + پر کردن کامل صفحه) */
+    body.mobile { background: #0000; }
+    body.mobile .container { max-width: none; width: 100vw; }
+    body.mobile .app-header { display: none; }
+    body.mobile iframe {
+      position: fixed; /* فاصله‌ها را صفر می‌کند */
+      inset: 0;        /* top/right/bottom/left = 0  */
+      width: 100vw;
+      height: 100dvh;  /* آدرس‌بار موبایل را هم لحاظ می‌کند */
+      border: none;
+    }
+  </style>
+
+  <script>
+    // تنظیم خودکار ویوپورت و کلاس‌های بدنه
+    (function () {
+      var BASE_WIDTH = 1280;              // عرض پایه برای دسکتاپ
+      var SWITCH_TO_RESPONSIVE_UNDER = 768; // زیرِ این عرض، کاملاً ریسپانسیو شو (موبایل)
+
+      function updateViewport() {
+        var meta = document.querySelector('meta[name="viewport"]');
+
+        if (window.innerWidth < SWITCH_TO_RESPONSIVE_UNDER) {
+          // حالت موبایل: مثل وبسایت عادی ریسپانسیو
+          document.body.classList.add('mobile');
+          document.documentElement.style.minWidth = 'auto';
+          meta.setAttribute('content',
+            'width=device-width, initial-scale=1, viewport-fit=cover'
+          );
+        } else {
+          // حالت دسکتاپ: قفل به عرض ثابت و اسکیل خودکار
+          document.body.classList.remove('mobile');
+          document.documentElement.style.minWidth = BASE_WIDTH + 'px';
+
+          var scale = window.innerWidth / BASE_WIDTH;
+          scale = Math.max(0.5, Math.min(1, scale)); // کلمپ برای پایداری
+          meta.setAttribute('content',
+            'width=' + BASE_WIDTH +
+            ', initial-scale=' + scale +
+            ', maximum-scale=' + scale +
+            ', user-scalable=no'
+          );
+        }
+      }
+
+      window.addEventListener('resize', updateViewport);
+      window.addEventListener('orientationchange', updateViewport);
+      document.addEventListener('DOMContentLoaded', updateViewport);
+    })();
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1 class="app-header">چت راکت</h1>
+
+    <!-- اجازهٔ دوربین و میکروفون -->
+    <iframe
+      src="https://paziresh24-chat-bj21wmqlww.liara.run/group/Test-Chat-1?layout=embedded"
+      title="Rocket Chat"
+      allow="camera; microphone">
+    </iframe>
+  </div>
+</body>
+</html>
